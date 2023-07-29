@@ -44,10 +44,9 @@ environment-related configurations in `Configuration file`,
   
 ``` py
     try:
-        connection_url = conn_url
 
         # Establish the connection
-        connection = psycopg2.connect(connection_url)
+        connection = psycopg2.connect(conn_url)
 
         if connection:
             cursor = connection.cursor()
@@ -83,15 +82,15 @@ environment-related configurations in `Configuration file`,
 ```py
     def read_db_config(filename, section):
         try:
-        parser = configparser.ConfigParser()
-        parser.read(filename)
-        config = parser[section]
+          parser = configparser.ConfigParser()
+          parser.read(filename)
+          config = parser[section]
 
-        return config['db_url'], config['api_url']
+          return config['db_url'], config['api_url']
 
         except configparser.Error as e:
-        error_message = {"configparserError": f"{str(e)}"} # Error can be viewed on Cloudwatch for analysis
-        return error_message
+          error_message = {"configparserError": f"{str(e)}"} # Error can be viewed on Cloudwatch for analysis
+          return error_message
 ```
 
 #### `SAM CLI` TEMPLATE:
