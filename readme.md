@@ -3,11 +3,12 @@
 ## BUILD, TEST AND DEPLOY `AWS LAMBDA` USING `SAM-CLI`
 
 ## Objectives:
-- Using `SAM CLI`- Develop _`lambda function`_ locally using Python to Call External Rest API and Load Into Postgres Database,  
+- Develop _`lambda function`_ locally using Python to Call External Rest API and Load Into Postgres Database,  
 - Externalize API endpoints, Postgres Database credentials and
 environment-related configurations in `Configuration file`,
-- Test Deploy the build Using Docker Desktop __`sam local invoke`__,
-- Deploy the Build into AWS using SAM CLI __`sam deploy`__
+-  Using `SAM CLI` Build the setup using __`sam build`__
+-  Using `SAM CLI` Test Deploy the build Using Docker Desktop __`sam local invoke`__,
+-  Using `SAM CLI` Deploy the Build into AWS using SAM CLI __`sam deploy`__
 
 ## Pre-requisite:
 - __AWS Account__ with `Admin Access` or Full Access for `CloudFormation`, `s3`, `Lambda`, `EventBridge`
@@ -109,7 +110,7 @@ environment-related configurations in `Configuration file`,
         MemorySize: 1024  # 1GB RAM (in MB)
 
     Resources:
-    MyLambdaFunction:
+      MyLambdaFunction:
         Type: 'AWS::Serverless::Function'
         Properties:
         CodeUri: fetch_api/
@@ -118,14 +119,14 @@ environment-related configurations in `Configuration file`,
         Architectures:
             - x86_64 
         
-    MyEventRule:
+     MyEventRule:
         Type: AWS::Events::Rule
         Properties:
         ScheduleExpression: rate(1 minute)  # Trigger every 1 minute
         State: DISABLED  # The rule will be created in a disabled state
         Targets:
             - Arn: !GetAtt MyLambdaFunction.Arn
-            Id: TargetFunction
+              Id: TargetFunction
 
 ```
 
