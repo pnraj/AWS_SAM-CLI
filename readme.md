@@ -21,6 +21,7 @@ environment-related configurations in `Configuration file`,
 #### `Call_API`:
 - Call Api using `urllib.request` and loads the data as `json` using `json.loads`
 <!--Using urllib.request because api is light weight-->
+- `fetch_api/api_function.py` is the script the is used by lambda
 
 ```py
     try:
@@ -128,7 +129,24 @@ environment-related configurations in `Configuration file`,
 
 ```
 
-### BUILD:
+#### Lambda Function:
+- `lambda_handler` function is executed while `lambda` get invoked by `Eventbridge`
+
+```py
+    def lambda_handler(event, context):
+        filename,section ='config/api_lambda.config', 'aws_creds'
+        conn_url, api_url = read_db_config(filename,section)
+        data = apitodb(conn_url, api_url)
+
+        if "LambdaError" in data:
+            return data # Error can be viewed on Cloudwatch for analysis
+        else:
+            return {"Success":"Lambda Succesfully Executed"}  
+```
+
+
+
+## BUILD:
 - Using `sam build` in the dir, where `template.yaml` is present
 - SAM cli will build the setup for the code
   
@@ -136,7 +154,7 @@ environment-related configurations in `Configuration file`,
   <img src="others\screenshots\build.png" alt="Alt Text">
 </p>
 
-### TEST:
+## TEST:
 - Testing the Build locally using `Docker` and `SAM CLI` >> `sam local invoke`
 - If image is not present in `Docker` it will _pull_ the required image and _test_ the build
 
@@ -144,7 +162,7 @@ environment-related configurations in `Configuration file`,
   <img src="others\screenshots\test.png" alt="Alt Text">
 </p>
 
-### DEPLOY:
+## DEPLOY:
 - After Testing the Build, We can deploy into `AWS` using `sam deploy --guided`
 - If the Build is deployed for the first time we should use `--guided`, otherwise we can use `sam deploy` for updating the template or other config
 - From the `SAM CLI` template `AWS CloudFormation` will create Needed Permission and Role
