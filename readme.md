@@ -3,7 +3,7 @@
 ## DEVELOP, TEST, DEPLOY `AWS LAMBDA` USING `SAM-CLI`
 
 ## Objectives:
-- Using `SAM CLI` plug-in with `VS CODE EDITOR` - Develop _`lambda function`_ locally using Python to Call External Rest API and Connect To Postgres Database,  
+- Using `SAM CLI`- Develop _`lambda function`_ locally using Python to Call External Rest API and Load Into Postgres Database,  
 - Externalize API endpoints, Postgres Database credentials and
 environment-related configurations in `Configuration file`,
 - Test Deploy the build Using Docker Desktop __`sam local invoke`__,
