@@ -1,6 +1,6 @@
 
 
-# DEVELOP, TEST, DEPLOY AWS LAMBDA USING SERVERLESS APPLICATION MODEL (SAM-CLI)
+## DEVELOP, TEST, DEPLOY `AWS LAMBDA` USING `SAM-CLI`
 
 ## Objectives:
 - Using `SAM CLI` plug-in with `VS CODE EDITOR` - Develop _`lambda function`_ locally using Python to Call External Rest API and Connect To Postgres Database,  
@@ -9,7 +9,7 @@ environment-related configurations in `Configuration file`,
 - Test Deploy the build Using Docker Desktop __`sam local invoke`__,
 - Deploy the Build into AWS using SAM CLI __`sam deploy`__
 
-## Pre-requeist:
+## Pre-requisite:
 - __AWS Account__ with `Admin Access` or Full Access for `CloudFormation`, `s3`, `Lambda`, `EventBridge`
 - Install and Configure `AWS CLI` 
 - Install `SAM CLI`, `VS CODE EDITOR`, `Docker Desktop`
