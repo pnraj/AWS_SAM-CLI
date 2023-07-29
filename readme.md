@@ -1,6 +1,6 @@
 
 
-## DEVELOP, TEST, DEPLOY `AWS LAMBDA` USING `SAM-CLI`
+## BUILD, TEST AND DEPLOY `AWS LAMBDA` USING `SAM-CLI`
 
 ## Objectives:
 - Using `SAM CLI`- Develop _`lambda function`_ locally using Python to Call External Rest API and Load Into Postgres Database,  
