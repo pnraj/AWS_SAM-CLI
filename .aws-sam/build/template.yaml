@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 1024
+Resources:
+  MyLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: MyLambdaFunction
+      Handler: api_function.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+    Metadata:
+      SamResourceId: MyLambdaFunction
+  MyEventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      ScheduleExpression: rate(1 minute)
+      State: DISABLED
+      Targets:
+      - Arn:
+          Fn::GetAtt:
+          - MyLambdaFunction
+          - Arn
+        Id: TargetFunction

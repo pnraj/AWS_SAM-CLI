@@ -1,0 +1,9 @@
+CLI 1:>> sam local start-lambda --docker-network host
+
+
+CLI 2:>> sam local generate-event eventbridge put-rule | sam local invoke MyLambdaFunction --event test-event.json --docker-network host
+
+
+sam local invoke -v $("C:/Users/HOME/Desktop/all/projects/guvi/fipasar/assignment/assign_lambda/fetch_api")
+
+C:/Users/HOME/Desktop/all/projects/guvi/fipasar/assignment/assign_lambda/fetch_api/

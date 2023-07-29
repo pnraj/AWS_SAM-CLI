@@ -1,0 +1,26 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "MyLambdaStack" 
+s3_bucket = "my-api-bucket" 
+s3_prefix = "MyLambdaStack" #(optional)
+resolve_s3 = true
+region = "ap-south-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
+
+[default.build]
+[default.build.parameters]
+# Uncomment the line below if you have a custom runtime and need to build the runtime with Docker
+# executable_name = "my-custom-runtime-build-command"
+
+# You can set other build parameters here if necessary
+
+[default.local]
+[default.local.apigateway]
+auto_create = false # This prevents AWS SAM from creating an API Gateway when running "sam local start-api"
+
+# You can set other local development parameters here if needed

@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 1024  # 1GB RAM (in MB)
+
+Resources:
+  MyLambdaFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      CodeUri: fetch_api/
+      Handler: api_function.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64 
+      
+  MyEventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      ScheduleExpression: rate(1 minute)  # Trigger every 1 minute
+      State: DISABLED  # The rule will be created in a disabled state
+      Targets:
+        - Arn: !GetAtt MyLambdaFunction.Arn
+          Id: TargetFunction
